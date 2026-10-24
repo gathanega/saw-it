@@ -9,11 +9,11 @@ Laravel 13 / PHP 8.3 (bukan Laravel 11 dari spesifikasi, karena proyek dasar sud
 
 ## Pemasangan
 ```bash
-cd airtracking && composer install && php artisan migrate --seed   # seeder: struktur ambang (KOSONG) + rekomendasi awal
-php artisan airtracking:make-admin admin@contoh.com --name=Admin
+cd saw-it && composer install && php artisan migrate --seed   # seeder: struktur ambang (KOSONG) + rekomendasi awal
+php artisan saw-it:make-admin admin@contoh.com --name=Admin
 php artisan serve
 php artisan queue:work            # kirim notifikasi (Telegram/email)
-# cron tiap menit:  * * * * * cd /path/airtracking && php artisan schedule:run >> /dev/null 2>&1
+# cron tiap menit:  * * * * * cd /path/saw-it && php artisan schedule:run >> /dev/null 2>&1
 ```
 `.env`: `APP_TIMEZONE=UTC` (jangan diubah; tampilan memakai WIB), `QUEUE_CONNECTION=database`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `PLANT_ALERT_MAIL` (+ pengaturan `MAIL_*` bila email dipakai).
 

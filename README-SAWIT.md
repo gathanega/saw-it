@@ -1,8 +1,8 @@
 # Dashboard Saw-IT
 
-Dashboard pemantauan kualitas air bertema **hijau-putih**, dibuat dengan mengadaptasi proyek `airtracking` (Laravel 13 + Leaflet + ESP32). Stack **tidak diganti**: referensi sudah berupa aplikasi Laravel lengkap (backend, admin, API, peta), jadi Saw-IT memakai **Laravel 13 / PHP 8.3+, Blade, Leaflet.js + OpenStreetMap, SQLite/MySQL/PostgreSQL**. Tailwind tidak dipakai karena CSS referensi sudah berbasis variabel warna; tema hijau cukup menimpa variabel di satu file.
+Dashboard pemantauan kualitas air bertema **hijau-putih**, dibuat dengan mengadaptasi proyek asalnya (Laravel 13 + Leaflet + ESP32). Stack **tidak diganti**: referensi sudah berupa aplikasi Laravel lengkap (backend, admin, API, peta), jadi Saw-IT memakai **Laravel 13 / PHP 8.3+, Blade, Leaflet.js + OpenStreetMap, SQLite/MySQL/PostgreSQL**. Tailwind tidak dipakai karena CSS referensi sudah berbasis variabel warna; tema hijau cukup menimpa variabel di satu file.
 
-## Yang berubah dari airtracking
+## Yang berubah dari proyek asal
 
 | Kebutuhan | Sebelumnya | Sekarang |
 |---|---|---|
@@ -56,12 +56,12 @@ erDiagram
     }
 ```
 
-Skema lengkap (credential, prediksi, baku mutu): `airtracking/docs/skema-database.md`.
+Skema lengkap (credential, prediksi, baku mutu): `saw-it/docs/skema-database.md`.
 
 ## Struktur folder (bagian yang relevan)
 
 ```
-airtracking/
+saw-it/
 ├─ app/Http/
 │  ├─ Controllers/
 │  │  ├─ Auth/AuthController.php        ← BARU: login, register, logout
@@ -82,7 +82,7 @@ airtracking/
 ├─ public/css/sawit-theme.css           ← BARU: palet hijau-putih
 ├─ public/js/{peta,lokasi,dashboard}.js inisialisasi peta + marker + popup
 ├─ tests/Feature/SawitAccessTest.php    ← BARU: uji akses tamu/user/admin
-└─ tests/legacy-airtracking/            tes lama (mengasumsikan dashboard tanpa login)
+└─ tests/legacy-saw-it/            tes lama (mengasumsikan dashboard tanpa login)
 ```
 
 ## Pemasangan
@@ -90,7 +90,7 @@ airtracking/
 Syarat: **PHP 8.3+** (dengan ekstensi `pdo_sqlite`, `mbstring`, `openssl`, `fileinfo`), **Composer**. Node.js/npm **tidak perlu**: tampilan memakai CSS di `public/`.
 
 ```bash
-cd airtracking
+cd saw-it
 setup.bat            # Windows
 sh setup.sh          # Linux / macOS
 php artisan serve    # buka http://127.0.0.1:8000 → diarahkan ke /login
@@ -104,10 +104,10 @@ composer install
 php artisan key:generate
 type nul > database\database.sqlite   # Linux: touch database/database.sqlite
 php artisan migrate --seed
-php artisan airtracking:make-admin admin@contoh.com --name=Admin
+php artisan saw-it:make-admin admin@contoh.com --name=Admin
 ```
 
-Data contoh opsional: `php artisan db:seed --class=DemoSeeder`. Menjalankan tes: `php artisan test`. Memasang ke salinan `airtracking` lain: `sh overlay-src/install.sh /path/ke/airtracking`.
+Data contoh opsional: `php artisan db:seed --class=DemoSeeder`. Menjalankan tes: `php artisan test`. Memasang ke salinan `saw-it` lain: `sh overlay-src/install.sh /path/ke/saw-it`.
 
 ### Bila masih galat
 
@@ -142,7 +142,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () { /* CR
 ## Catatan
 
 - **Belum dijalankan**: lingkungan tempat paket ini disusun tidak punya PHP, jadi kode tidak sempat dieksekusi dan `php artisan test` belum dicoba. Jalankan langkah pemasangan di atas; bila ada galat, kirim pesannya.
-- Tes lama dipindah ke `tests/legacy-airtracking/` karena menguji dashboard tanpa login. Tulis ulang bila masih dibutuhkan.
+- Tes lama dipindah ke `tests/legacy-saw-it/` karena menguji dashboard tanpa login. Tulis ulang bila masih dibutuhkan.
 - Peta memakai tile OpenStreetMap (gratis, tanpa API key); untuk trafik besar pakai penyedia tile berbayar atau Mapbox.
 - Verifikasi email dan lupa sandi belum ada; tambahkan bila akun publik dibuka luas.
-- Teks "AirTracking" di `resources/views` diganti "Saw-IT" oleh `install.sh`; firmware, nama perintah artisan, dan dokumen README lama tidak diubah.
+- Teks "Saw-IT" di `resources/views` diganti "Saw-IT" oleh `install.sh`; firmware, nama perintah artisan, dan dokumen README lama tidak diubah.

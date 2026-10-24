@@ -41,7 +41,7 @@ Dashboard web pemantau tanaman berbasis IoT, dibangun di atas **Laravel 13**. Pe
 | 8 | **Kalibrasi sensor** | Kalibrasi dua titik (kering/basah atau larutan buffer) per sensor. |
 | 9 | **Ketahanan** | Ingest idempoten, batch data tertunda, timestamp perangkat dan server, deteksi sensor error dan perangkat offline. |
 
-Komoditas yang disiapkan: padi, cabai/tomat/sayuran buah, hidroponik, jagung/kedelai/palawija, kopi/kakao/perkebunan, greenhouse, dan jamur, masing-masing dengan sensor tambahan yang relevan (lihat `config/plant.php`). Modul kualitas air bawaan proyek ([AirTracking](README-AIRTRACKING.md)) tetap tersedia di `/air`.
+Komoditas yang disiapkan: padi, cabai/tomat/sayuran buah, hidroponik, jagung/kedelai/palawija, kopi/kakao/perkebunan, greenhouse, dan jamur, masing-masing dengan sensor tambahan yang relevan (lihat `config/plant.php`). Modul kualitas air bawaan proyek ([kualitas air](README-SAWIT.md)) tetap tersedia di `/air`.
 
 ## Tampilan
 
@@ -94,13 +94,13 @@ Kondisi awal setelah `migrate --seed`: semua nilai kosong dan bertanda "perlu di
 Kebutuhan: **PHP 8.3+** (ekstensi `pdo_sqlite`/`pdo_mysql`, `mbstring`, `openssl`, `fileinfo`) dan **Composer**.
 
 ```bash
-git clone <url-repo-anda> saw-it && cd saw-it/airtracking
+git clone <url-repo-anda> && cd <nama-repo>/saw-it
 cp .env.example .env
 composer install
 php artisan key:generate
 touch database/database.sqlite            # atau atur DB_* di .env untuk MySQL/PostgreSQL
 php artisan migrate --seed                # struktur ambang (KOSONG) + rekomendasi awal
-php artisan airtracking:make-admin admin@contoh.com --name=Admin
+php artisan saw-it:make-admin admin@contoh.com --name=Admin
 php artisan serve                         # http://127.0.0.1:8000
 ```
 
@@ -109,7 +109,7 @@ Proses latar belakang (wajib untuk notifikasi dan deteksi offline):
 ```bash
 php artisan queue:work
 # cron, tiap menit:
-* * * * * cd /path/ke/saw-it/airtracking && php artisan schedule:run >> /dev/null 2>&1
+* * * * * cd /path/ke/saw-it/saw-it && php artisan schedule:run >> /dev/null 2>&1
 ```
 
 Skrip `setup.sh` / `setup.bat` mengotomatiskan langkah dasar. Jika muncul galat, lihat tabel pemecahan masalah di [README-SAWIT.md](README-SAWIT.md).
@@ -196,7 +196,7 @@ php artisan test
 
 ```
 saw-it/
-├─ airtracking/                    aplikasi Laravel
+├─ saw-it/                         aplikasi Laravel
 │  ├─ app/Services/Plant/          Status, Derived, PlantIngestor, AlertEngine, ControlEngine, PlantSnapshot
 │  ├─ app/Http/Controllers/        Api/Plant*, Plant/*, Admin/Plant*, Threshold*, Calibration*, Recommendation*
 │  ├─ app/Jobs/SendAlertNotification.php
@@ -205,10 +205,9 @@ saw-it/
 │  ├─ database/                    migrasi + PlantSeeder
 │  ├─ resources/views/plant/       dashboard, grafik, kontrol, peringatan, bantuan
 │  └─ tests/Feature/PlantTest.php
-├─ airtracking-firmware/           firmware ESP32 untuk modul air (tidak dipakai modul tanaman)
+├─ saw-it-firmware/                firmware ESP32 untuk modul air (tidak dipakai modul tanaman)
 ├─ docs/screenshots/               gambar README
 ├─ README-TANAM.md                 catatan teknis modul tanaman
-├─ README-AIRTRACKING.md           dokumentasi modul kualitas air
 └─ README-SAWIT.md                 catatan adaptasi Saw-IT (login, peran, peta)
 ```
 

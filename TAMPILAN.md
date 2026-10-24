@@ -1,4 +1,4 @@
-# Panduan tampilan web AirTracking
+# Panduan tampilan web Saw-IT
 
 Dokumen ini menjelaskan apa yang tampil di setiap halaman, apa arti warna dan label, serta bagaimana tampilan menyesuaikan ukuran layar. Untuk instalasi dan API, lihat [`README.md`](../README.md).
 
@@ -55,7 +55,7 @@ Status selalu disertai simbol dan teks, bukan warna saja.
 
 Header menempel di bagian atas saat halaman digulir.
 
-- **Kiri**: logo tetes air biru, tulisan **Air**Tracking (kata "Tracking" berwarna biru), dan subjudul.
+- **Kiri**: logo tetes air hijau, tulisan **Saw**-IT (bagian "-IT" berwarna hijau), dan subjudul.
   - Pengunjung: "Pemantauan kualitas air".
   - Admin di halaman admin: "Panel admin · email admin".
 - **Menu pengunjung**: Dashboard, Peta lokasi, dan tombol **Masuk admin**.
@@ -168,7 +168,7 @@ Alamat `/lokasi`. Terbuka untuk umum. Memakai Leaflet dan peta OpenStreetMap, se
 
 ## 3. Login admin
 
-Alamat `/admin/login`. Kartu di tengah halaman berisi judul **AirTracking**, penjelasan "Masuk khusus admin untuk mengelola alat. Dashboard publik tidak memerlukan login.", kolom Email dan Kata sandi, tombol **Masuk**, dan tautan "‹ Kembali ke dashboard publik".
+Alamat `/admin/login`. Kartu di tengah halaman berisi judul **Saw-IT**, penjelasan "Masuk khusus admin untuk mengelola alat. Dashboard publik tidak memerlukan login.", kolom Email dan Kata sandi, tombol **Masuk**, dan tautan "‹ Kembali ke dashboard publik".
 
 ![Login admin](screenshots/admin-login.png)
 
