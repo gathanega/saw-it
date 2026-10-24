@@ -1,0 +1,34 @@
+/* Modul tanaman Saw-IT. Status selalu memakai ikon + teks, bukan warna saja. */
+.picker{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 14px}
+.picker select,.inl input,.inl select,.tanam-form input,.tanam-form select{padding:7px 9px;border:1px solid var(--line);border-radius:10px;background:#fff;font:inherit;max-width:100%}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin:0 0 14px}
+.scard{background:#fff;border:1px solid var(--line);border-left:6px solid #9AA8A0;border-radius:16px;padding:12px 14px}
+.scard h3{font-size:14px;margin:0 0 4px;color:var(--ink2);font-weight:600}
+.scard .v{font-size:28px;font-weight:700;line-height:1.1}.scard .v small{font-size:14px;font-weight:500;color:var(--ink2)}
+.scard .m{font-size:12px;color:var(--ink2);margin-top:6px}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;margin-top:6px;background:#EEF2EF;color:#44524B}
+.s-normal{border-left-color:#1B8A4B}.s-normal .badge{background:#DCF1E5;color:#14703C}
+.s-waspada{border-left-color:#D69E2E}.s-waspada .badge{background:#FEF3C7;color:#8A5A00}
+.s-bahaya{border-left-color:#C0392B}.s-bahaya .badge{background:#FDE2DF;color:#9B1C12}
+.s-error{border-left-color:#6B46C1}.s-error .badge{background:#EDE7F9;color:#4A2F93}
+.s-stale{border-left-color:#6B7280;opacity:.85}.s-stale .badge{background:#E5E7EB;color:#374151}
+.s-uncal{border-left-color:#2B6CB0}.s-uncal .badge{background:#E1EEFB;color:#1E4E80}
+.s-unknown,.s-nodata{border-left-color:#B8C4BD}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-bottom:14px}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.kv:last-child{border:0}
+.lst{margin:0;padding-left:18px}.lst li{margin:5px 0}
+.online{font-weight:700}.online.on{color:#14703C}.online.off{color:#9B1C12}
+.chartbox{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;margin-bottom:12px}
+.chartbox h3{margin:0 0 6px;font-size:15px}.chartbox canvas{max-height:240px}
+.checks{display:flex;gap:10px 16px;flex-wrap:wrap}.checks label{display:flex;gap:5px;align-items:center}
+.inl{display:inline-flex;gap:6px;align-items:center;flex-wrap:wrap}
+.tw table input[type=number]{width:96px}
+.keybox{background:#FFF8E1;border:1px solid #F0D58A;border-radius:12px;padding:10px 14px;margin-bottom:12px;word-break:break-all}
+.warn-note{background:#FEF3C7;border-radius:10px;padding:8px 12px;font-size:13px}
+
+/* Perbaikan tata letak: airtracking.css memberi input/select width:100% sehingga form .inl menumpuk satu per baris,
+   dan sel tabel rata kanan. Di modul tanaman, form sebaris dan teks tabel rata kiri. */
+.inl input:not([type=checkbox]),.inl select,.picker select{width:auto;margin:0}
+.picker select{min-width:220px}
+.tw th,.tw td{text-align:left}
